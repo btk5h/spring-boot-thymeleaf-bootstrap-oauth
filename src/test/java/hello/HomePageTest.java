@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
-
+import org.springframework.security.test.context.support.WithMockUser;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -25,6 +25,7 @@ public class HomePageTest {
     private MockMvc mvc;
 
     @Test
+	@WithMockUser(value = "1234")
     public void getHomePage_ContentType() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.TEXT_HTML))
                 .andExpect(status().isOk())
@@ -33,6 +34,7 @@ public class HomePageTest {
 
 
     @Test
+	@WithMockUser(value = "1234")
     public void getHomePage_BootstrapLoaded() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.TEXT_HTML))
                 .andExpect(status().isOk())
@@ -47,6 +49,7 @@ public class HomePageTest {
 
 
     @Test
+	@WithMockUser(value = "1234")
     public void getHomePage_hasCorrectTitle() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.TEXT_HTML))
                 .andExpect(status().isOk())

@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
-
+import org.springframework.security.test.context.support.WithMockUser;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -25,6 +25,7 @@ public class GreetingControllerTest {
     private MockMvc mvc;
 
     @Test
+	@WithMockUser(value = "1234")
     public void getGreeting_ContentType() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/greeting").accept(MediaType.TEXT_HTML))
                 .andExpect(status().isOk())
@@ -32,6 +33,7 @@ public class GreetingControllerTest {
     }
 
     @Test
+	@WithMockUser(value = "1234")
     public void getGreeting_BootstrapLoaded() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/greeting").accept(MediaType.TEXT_HTML))
                 .andExpect(status().isOk())
@@ -45,6 +47,7 @@ public class GreetingControllerTest {
     }
 
     @Test
+	@WithMockUser(value = "1234")
     public void getGreeting_hasCorrectTitle() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/greeting").accept(MediaType.TEXT_HTML))
                 .andExpect(status().isOk())
